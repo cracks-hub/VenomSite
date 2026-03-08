@@ -1,43 +1,175 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Venom Executor | Elite Performance</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venom | The Ultimate Execution Environment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { background: #08080a; color: white; font-family: sans-serif; text-align: center; margin: 0; }
-        .hero { padding: 100px 20px; background: radial-gradient(circle, #101015 0%, #050507 100%); }
-        .logo { color: #00ff88; font-size: 50px; font-weight: 900; letter-spacing: 5px; text-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
-        .btn { 
-            display: inline-block; background: #00ff88; color: black; padding: 15px 40px; 
-            text-decoration: none; font-weight: bold; border-radius: 5px; margin-top: 30px;
+        :root {
+            --primary: #00ff88;
+            --primary-glow: rgba(0, 255, 136, 0.3);
+            --bg: #050505;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .bg-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% -20%, #00ff8822 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* Header / Hero */
+        header {
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 900;
+            letter-spacing: 15px;
+            color: var(--primary);
+            text-shadow: 0 0 30px var(--primary-glow);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .sub-hero {
+            font-size: 18px;
+            color: #aaa;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* Download Section */
+        .main-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .btn-download {
+            display: inline-block;
+            background: var(--primary);
+            color: #000;
+            padding: 18px 50px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 16px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .btn-download:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 40px var(--primary);
+            filter: brightness(1.1);
+        }
+
+        /* Stats/Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 60px;
+        }
+
+        .feat-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 18px;
             transition: 0.3s;
         }
-        .btn:hover { transform: scale(1.1); box-shadow: 0 0 20px #00ff88; }
-        .features { display: flex; justify-content: center; gap: 50px; padding: 50px; }
-        .card { background: #111; padding: 20px; border: 1px solid #222; border-radius: 10px; width: 250px; }
-        .card h3 { color: #00ff88; }
+
+        .feat-box:hover {
+            border-color: var(--primary);
+            background: rgba(0, 255, 136, 0.02);
+        }
+
+        .feat-box h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .feat-box p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        footer {
+            margin-top: 100px;
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: #444;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <div class="logo">VENOM V2</div>
-        <p>The most powerful visual execution environment for 2026.</p>
-        <a href="VenomClient.exe" class="btn" download>DOWNLOAD NOW</a>
-    </div>
+    <div class="bg-glow"></div>
 
-    <div class="features">
-        <div class="card">
-            <h3>Level 8 API</h3>
-            <p>Seamless bytecode conversion and high-speed execution.</p>
+    <div class="container">
+        <header>
+            <div class="logo-text">VENOM</div>
+            <p class="sub-hero">Engineered for speed. Built for stability. The premier choice for advanced script execution.</p>
+        </header>
+
+        <div class="main-card">
+            <h2 style="margin-bottom: 10px;">Ready to Begin?</h2>
+            <p style="color: #666; margin-bottom: 30px;">Version 1.0.4 // Windows 10 & 11 Optimized</p>
+            <a href="VenomClient.exe" class="btn-download" download>DOWNLOAD CLIENT</a>
+            <div style="margin-top: 20px; font-size: 13px; color: #555;">
+                File size: 12.4 MB | Last updated: Just now
+            </div>
         </div>
-        <div class="card">
-            <h3>Cloud Scripts</h3>
-            <p>Access thousands of community scripts instantly.</p>
+
+        <div class="features">
+            <div class="feat-box">
+                <h3>ZERO-LATENCY</h3>
+                <p>Proprietary injection method ensures your scripts run with maximum efficiency and zero lag.</p>
+            </div>
+            <div class="feat-box">
+                <h3>STABILITY CORE</h3>
+                <p>Designed to handle high-demand scripts without crashing your game environment.</p>
+            </div>
+            <div class="feat-box">
+                <h3>CLEAN DESIGN</h3>
+                <p>A focused, modern interface that stays out of your way while you work.</p>
+            </div>
         </div>
-        <div class="card">
-            <h3>Undetectable</h3>
-            <p>Built with advanced obfuscation to stay under the radar.</p>
-        </div>
+
+        <footer>
+            &copy; 2026 VENOM SOFTWARE. ALL RIGHTS RESERVED.<br>
+            NOT AFFILIATED WITH ANY GAME PLATFORM.
+        </footer>
     </div>
 </body>
-
 </html>
