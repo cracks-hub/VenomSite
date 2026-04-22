@@ -3,173 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Venom | The Ultimate Execution Environment</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>VENOM | Undetected Performance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #00ff88;
-            --primary-glow: rgba(0, 255, 136, 0.3);
-            --bg: #050505;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1);
+            --accent: #00bdff;
+            --bg-dark: #060708;
+            --card-glass: rgba(15, 18, 22, 0.8);
+            --border: rgba(255, 255, 255, 0.05);
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bg);
-            color: white;
-            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        /* Animated Background */
-        .bg-glow {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% -20%, #00ff8822 0%, transparent 50%);
-            z-index: -1;
-        }
-
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-
-        /* Header / Hero */
-        header {
-            padding: 120px 0 80px;
+        /* --- TOP BAR & NAVIGATION --- */
+        .status-bar {
+            background: rgba(0, 255, 136, 0.05);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 0;
             text-align: center;
-        }
-
-        .logo-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(40px, 8vw, 80px);
-            font-weight: 900;
-            letter-spacing: 15px;
+            font-size: 12px;
+            font-weight: 600;
             color: var(--primary);
-            text-shadow: 0 0 30px var(--primary-glow);
-            margin-bottom: 20px;
-            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1001;
+            backdrop-filter: blur(5px);
         }
 
-        .sub-hero {
-            font-size: 18px;
-            color: #aaa;
-            max-width: 600px;
-            margin: 0 auto 40px;
+        nav {
+            position: fixed;
+            top: 35px; width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: rgba(6, 7, 8, 0.7);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
         }
 
-        /* Download Section */
-        .main-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 50px;
+        .logo {
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tabs a {
+            text-decoration: none;
+            color: #888;
+            margin: 0 15px;
+            font-weight: 600;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .tabs a:hover { color: var(--primary); }
+
+        .discord-btn {
+            background: #5865F2;
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.2);
+            transition: 0.3s;
+        }
+
+        .discord-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(88, 101, 242, 0.4); }
+
+        /* --- HERO --- */
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            background: radial-gradient(circle at center, rgba(0, 255, 136, 0.04) 0%, transparent 65%);
+            padding-top: 80px;
         }
 
-        .btn-download {
-            display: inline-block;
-            background: var(--primary);
-            color: #000;
+        .hero h1 { font-size: clamp(40px, 8vw, 80px); margin: 0; font-weight: 800; letter-spacing: -2px; }
+        .hero span { color: var(--primary); }
+        .hero p { color: #8a8f98; max-width: 600px; font-size: 18px; margin: 25px 0; line-height: 1.6; }
+
+        .dl-btn {
+            background: white;
+            color: black;
             padding: 18px 50px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 800;
             font-size: 16px;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px var(--primary-glow);
-        }
-
-        .btn-download:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 40px var(--primary);
-            filter: brightness(1.1);
-        }
-
-        /* Stats/Features Grid */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 60px;
-        }
-
-        .feat-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 30px;
-            border-radius: 18px;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
             transition: 0.3s;
         }
 
-        .feat-box:hover {
-            border-color: var(--primary);
-            background: rgba(0, 255, 136, 0.02);
-        }
+        .dl-btn:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(0, 255, 136, 0.3); }
 
-        .feat-box h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 14px;
-            color: var(--primary);
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-        }
+        /* --- REVIEWS --- */
+        .section-title { text-align: center; margin: 100px 0 40px; font-size: 32px; font-weight: 800; }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; padding: 0 10%; }
+        .review-card { background: var(--card-glass); border: 1px solid var(--border); padding: 30px; border-radius: 20px; transition: 0.3s; }
+        .review-card:hover { border-color: var(--primary); }
+        .user-avatar { width: 35px; height: 35px; background: #1a1d21; border: 1px solid var(--primary); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 12px; font-size: 12px; font-weight: 800; }
 
-        .feat-box p {
-            color: #888;
-            font-size: 14px;
-        }
+        /* --- FAQ --- */
+        .faq-container { padding: 40px 20% 100px; }
+        .faq-item { background: #0a0c10; border: 1px solid var(--border); margin-bottom: 12px; border-radius: 12px; cursor: pointer; transition: 0.3s; }
+        .faq-item:hover { border-color: rgba(255,255,255,0.1); }
+        .faq-q { padding: 22px; font-weight: 700; display: flex; justify-content: space-between; font-size: 15px; }
+        .faq-a { padding: 0 22px; max-height: 0; overflow: hidden; transition: 0.4s ease-in-out; color: #8a8f98; font-size: 14px; line-height: 1.6; }
 
-        footer {
-            margin-top: 100px;
-            padding: 40px;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            color: #444;
-            font-size: 12px;
-        }
     </style>
 </head>
 <body>
-    <div class="bg-glow"></div>
 
-    <div class="container">
-        <header>
-            <div class="logo-text">VENOM</div>
-            <p class="sub-hero">Engineered for speed. Built for stability. The premier choice for advanced script execution.</p>
-        </header>
-
-        <div class="main-card">
-            <h2 style="margin-bottom: 10px;">Ready to Begin?</h2>
-            <p style="color: #666; margin-bottom: 30px;">Version 1.0.4 // Windows 10 & 11 Optimized</p>
-            <a href="VenomClient.exe" class="btn-download" download>DOWNLOAD CLIENT</a>
-            <div style="margin-top: 20px; font-size: 13px; color: #555;">
-                File size: 12.4 MB | Last updated: Just now
-            </div>
-        </div>
-
-        <div class="features">
-            <div class="feat-box">
-                <h3>ZERO-LATENCY</h3>
-                <p>Proprietary injection method ensures your scripts run with maximum efficiency and zero lag.</p>
-            </div>
-            <div class="feat-box">
-                <h3>STABILITY CORE</h3>
-                <p>Designed to handle high-demand scripts without crashing your game environment.</p>
-            </div>
-            <div class="feat-box">
-                <h3>CLEAN DESIGN</h3>
-                <p>A focused, modern interface that stays out of your way while you work.</p>
-            </div>
-        </div>
-
-        <footer>
-            &copy; 2026 VENOM SOFTWARE. ALL RIGHTS RESERVED.<br>
-            NOT AFFILIATED WITH ANY GAME PLATFORM.
-        </footer>
+    <div class="status-bar">
+        ● <span id="user-count">1,432</span> USERS CURRENTLY ACTIVE IN CLOUD
     </div>
+
+    <nav>
+        <div class="logo">VENOM</div>
+        <div class="tabs">
+            <a href="#">Home</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#faq">FAQ</a>
+        </div>
+        <a href="https://discord.gg/c8RzujZnSM" class="discord-btn">JOIN DISCORD</a>
+    </nav>
+
+    <section class="hero">
+        <h1>UNLEASH THE <span>EMPIRE.</span></h1>
+        <p>The ultimate performance suite for elite users. Stable execution, advanced kernel security, and total invisibility.</p>
+        <a href="https://discord.gg/c8RzujZnSM" class="dl-btn">DOWNLOAD NOW</a>
+    </section>
+
+    <h2 id="reviews" class="section-title">USER REVIEWS</h2>
+    <div class="reviews-grid">
+        <div class="review-card">
+            <div class="user-avatar">RX</div> <b>Roxas_99</b>
+            <p style="color: #8a8f98; font-style: italic; font-size: 14px; margin-top: 15px;">"The visuals are insane. Zero lag and totally clean on my recording software."</p>
+        </div>
+        <div class="review-card">
+            <div class="user-avatar">VT</div> <b>Viper_Tech</b>
+            <p style="color: #8a8f98; font-style: italic; font-size: 14px; margin-top: 15px;">"Actually undetected. Been using the kernel bypass since January without a single issue."</p>
+        </div>
+        <div class="review-card">
+            <div class="user-avatar">K8</div> <b>Kryptex_8</b>
+            <p style="color: #8a8f98; font-style: italic; font-size: 14px; margin-top: 15px;">"Easy setup, best community. Venom is on top."</p>
+        </div>
+    </div>
+
+    <h2 id="faq" class="section-title">FREQUENTLY ASKED</h2>
+    <div class="faq-container">
+        
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">Is the client undetected? <span>+</span></div>
+            <div class="faq-a"><p>Yes. Venom uses a proprietary polymorphic engine that generates a unique signature for every user, making it invisible to standard signature-based detection.</p></div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">What versions of Windows are supported? <span>+</span></div>
+            <div class="faq-a"><p>We fully support Windows 10 and Windows 11 (all versions). Our kernel driver is optimized for the latest security updates.</p></div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">Do I need to disable my Antivirus? <span>+</span></div>
+            <div class="faq-a"><p>Because Venom uses kernel-level hooks to stay undetected, some AVs will flag it as a false positive. We recommend adding an exclusion to the folder before running.</p></div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">How do I get my access key? <span>+</span></div>
+            <div class="faq-a"><p>Access is managed through our Discord. Once you download the client, join the server and link your account to receive your initialization key.</p></div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">Does this work on laptops? <span>+</span></div>
+            <div class="faq-a"><p>Yes, as long as you are running a supported Windows OS, the client will function perfectly on both desktops and laptops.</p></div>
+        </div>
+
+    </div>
+
+    <script>
+        // Smooth FAQ Toggle
+        function toggleFaq(element) {
+            const answer = element.querySelector('.faq-a');
+            const span = element.querySelector('span');
+            if (answer.style.maxHeight) {
+                answer.style.maxHeight = null;
+                span.innerText = "+";
+            } else {
+                answer.style.maxHeight = "150px";
+                span.innerText = "-";
+            }
+        }
+
+        // Real-time user counter
+        setInterval(() => {
+            let count = document.getElementById('user-count');
+            let val = parseInt(count.innerText.replace(',',''));
+            count.innerText = (val + Math.floor(Math.random() * 5) - 2).toLocaleString();
+        }, 3000);
+    </script>
 </body>
 </html>
