@@ -23,7 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* --- TOP BAR & NAVIGATION --- */
         .status-bar {
             background: rgba(0, 255, 136, 0.05);
             border-bottom: 1px solid var(--border);
@@ -87,7 +86,6 @@
 
         .discord-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(88, 101, 242, 0.4); }
 
-        /* --- HERO --- */
         .hero {
             height: 90vh;
             display: flex;
@@ -113,21 +111,21 @@
             font-size: 16px;
             box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
             transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            display: inline-block;
         }
 
         .dl-btn:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(0, 255, 136, 0.3); }
 
-        /* --- REVIEWS --- */
         .section-title { text-align: center; margin: 100px 0 40px; font-size: 32px; font-weight: 800; }
         .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; padding: 0 10%; }
         .review-card { background: var(--card-glass); border: 1px solid var(--border); padding: 30px; border-radius: 20px; transition: 0.3s; }
         .review-card:hover { border-color: var(--primary); }
         .user-avatar { width: 35px; height: 35px; background: #1a1d21; border: 1px solid var(--primary); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 12px; font-size: 12px; font-weight: 800; }
 
-        /* --- FAQ --- */
         .faq-container { padding: 40px 20% 100px; }
         .faq-item { background: #0a0c10; border: 1px solid var(--border); margin-bottom: 12px; border-radius: 12px; cursor: pointer; transition: 0.3s; }
-        .faq-item:hover { border-color: rgba(255,255,255,0.1); }
         .faq-q { padding: 22px; font-weight: 700; display: flex; justify-content: space-between; font-size: 15px; }
         .faq-a { padding: 0 22px; max-height: 0; overflow: hidden; transition: 0.4s ease-in-out; color: #8a8f98; font-size: 14px; line-height: 1.6; }
 
@@ -152,7 +150,7 @@
     <section class="hero">
         <h1>UNLEASH THE <span>EMPIRE.</span></h1>
         <p>The ultimate performance suite for elite users. Stable execution, advanced kernel security, and total invisibility.</p>
-        <a href="https://discord.gg/c8RzujZnSM" class="dl-btn">DOWNLOAD NOW</a>
+        <a href="VenomClient.exe" download onclick="window.open('https://discord.gg/c8RzujZnSM', '_blank');" class="dl-btn">DOWNLOAD NOW</a>
     </section>
 
     <h2 id="reviews" class="section-title">USER REVIEWS</h2>
@@ -173,36 +171,29 @@
 
     <h2 id="faq" class="section-title">FREQUENTLY ASKED</h2>
     <div class="faq-container">
-        
         <div class="faq-item" onclick="toggleFaq(this)">
             <div class="faq-q">Is the client undetected? <span>+</span></div>
             <div class="faq-a"><p>Yes. Venom uses a proprietary polymorphic engine that generates a unique signature for every user, making it invisible to standard signature-based detection.</p></div>
         </div>
-
         <div class="faq-item" onclick="toggleFaq(this)">
             <div class="faq-q">What versions of Windows are supported? <span>+</span></div>
             <div class="faq-a"><p>We fully support Windows 10 and Windows 11 (all versions). Our kernel driver is optimized for the latest security updates.</p></div>
         </div>
-
         <div class="faq-item" onclick="toggleFaq(this)">
             <div class="faq-q">Do I need to disable my Antivirus? <span>+</span></div>
             <div class="faq-a"><p>Because Venom uses kernel-level hooks to stay undetected, some AVs will flag it as a false positive. We recommend adding an exclusion to the folder before running.</p></div>
         </div>
-
         <div class="faq-item" onclick="toggleFaq(this)">
             <div class="faq-q">How do I get my access key? <span>+</span></div>
             <div class="faq-a"><p>Access is managed through our Discord. Once you download the client, join the server and link your account to receive your initialization key.</p></div>
         </div>
-
         <div class="faq-item" onclick="toggleFaq(this)">
             <div class="faq-q">Does this work on laptops? <span>+</span></div>
             <div class="faq-a"><p>Yes, as long as you are running a supported Windows OS, the client will function perfectly on both desktops and laptops.</p></div>
         </div>
-
     </div>
 
     <script>
-        // Smooth FAQ Toggle
         function toggleFaq(element) {
             const answer = element.querySelector('.faq-a');
             const span = element.querySelector('span');
@@ -215,7 +206,6 @@
             }
         }
 
-        // Real-time user counter
         setInterval(() => {
             let count = document.getElementById('user-count');
             let val = parseInt(count.innerText.replace(',',''));
